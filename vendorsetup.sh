@@ -1,2 +1,0 @@
-add_lunch_combo lineage_sisleyr-eng
-add_lunch_combo lineage_sisleyr-userdebug
