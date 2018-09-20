@@ -28,6 +28,10 @@ BOARD_CAMERA_SENSORS := ov13850_sisley_snd imx179_sisley_snd
 USE_DEVICE_SPECIFIC_CAMERA := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
+TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
+    /system/bin/cameraserver=22 \
+    /system/bin/mediaserver=22 \
+    /system/vendor/bin/mm-qcamera-daemon=22
 
 # Filesystem
 BOARD_FLASH_BLOCK_SIZE := 131072
