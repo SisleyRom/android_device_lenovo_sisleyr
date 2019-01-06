@@ -1,5 +1,33 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!--*******uniscope-driver-modify-file-on-qualcomm-platform***************-->
+<!--
+    Copyright (c) 2014, The Linux Foundation. All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are
+    met:
+        * Redistributions of source code must retain the above copyright
+          notice, this list of conditions and the following disclaimer.
+        * Redistributions in binary form must reproduce the above
+          copyright notice, this list of conditions and the following
+          disclaimer in the documentation and/or other materials provided
+          with the distribution.
+        * Neither the name of The Linux Foundation nor the names of its
+          contributors may be used to endorse or promote products derived
+          from this software without specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+    ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+    BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+    BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
 <mixer>
     <!-- These are the initial mixer settings -->
     <ctl name="Voice Rx Device Mute" id="0" value="0" />
@@ -23,9 +51,8 @@
     <ctl name="TTY Mode" value="Off" />
     <ctl name="HPHL Volume" value="9" />
     <ctl name="HPHR Volume" value="9" />
-    <ctl name="RX1 Digital Volume" value="86" />
+    <ctl name="RX1 Digital Volume" value="84" />
     <ctl name="RX2 Digital Volume" value="84" />
-    <!-- kangyan @uniscope_drv 201406014 for speaker volume,the default valume is 84 -->
     <ctl name="RX3 Digital Volume" value="84" />
     <ctl name="IIR1 INP1 Volume" value="84" />
     <ctl name="IIR1 INP2 Volume" value="84" />
@@ -55,8 +82,8 @@
     <ctl name="HPHR" value="ZERO" />
     <ctl name="SPK DAC Switch" value="0" />
     <ctl name="Speaker Boost" value="ENABLE" />
-    <ctl name="EAR PA Gain" value="POS_1P5_DB" />
     <ctl name="EAR PA Boost" value="ENABLE" />
+    <ctl name="EAR PA Gain" value="POS_1P5_DB" />
     <ctl name="MI2S_RX Channels" value="One" />
     <ctl name="MI2S_TX Channels" value="One" />
 
@@ -273,6 +300,14 @@
     <path name="audio-record">
         <ctl name="MultiMedia1 Mixer TERT_MI2S_TX" value="1" />
     </path>
+    <!-- listen -->
+    <ctl name="LSM1 MUX" value="None" />
+    <ctl name="LSM2 MUX" value="None" />
+    <ctl name="LSM3 MUX" value="None" />
+    <ctl name="LSM4 MUX" value="None" />
+    <ctl name="LSM5 MUX" value="None" />
+    <ctl name="TERT_MI2S_TX LSM Function" value="None" />
+    <!-- listen end-->
 
     <path name="audio-record bt-sco">
         <ctl name="MultiMedia1 Mixer INTERNAL_BT_SCO_TX" value="1" />
@@ -291,12 +326,12 @@
         <ctl name="MultiMedia1 Mixer INTERNAL_FM_TX" value="1" />
     </path>
 
-    <path name="fm-virtual-record capture-fm">
-        <ctl name="MultiMedia2 Mixer INTERNAL_FM_TX" value="1" />
-    </path>
-
     <path name="low-latency-record">
         <ctl name="MultiMedia5 Mixer TERT_MI2S_TX" value="1" />
+    </path>
+
+    <path name="fm-virtual-record capture-fm">
+        <ctl name="MultiMedia2 Mixer INTERNAL_FM_TX" value="1" />
     </path>
 
     <path name="voice-call">
@@ -374,7 +409,7 @@
         <ctl name="PRI_MI2S_RX Port Mixer INTERNAL_BT_SCO_TX" value="1" />
         <ctl name="INTERNAL_BT_SCO_RX Audio Mixer MultiMedia6" value="1" />
         <ctl name="MultiMedia6 Mixer TERT_MI2S_TX" value="1" />
-        <ctl name="HFP_INT_UL_HL Switch" value="1" />
+        <ctl name="MI2S_DL_HL Switch" value="1" />
     </path>
 
     <path name="hfp-sco-wb">
@@ -467,6 +502,27 @@
         <path name="compress-voip-call bt-sco" />
     </path>
 
+    <path name="listen-voice-wakeup-1">
+        <ctl name="LSM1 MUX" value="TERT_MI2S_TX" />
+        <ctl name="TERT_MI2S_TX LSM Function" value="SWAUDIO" />
+    </path>
+    <path name="listen-voice-wakeup-2">
+        <ctl name="LSM2 MUX" value="TERT_MI2S_TX" />
+        <ctl name="TERT_MI2S_TX LSM Function" value="SWAUDIO" />
+    </path>
+    <path name="listen-voice-wakeup-3">
+        <ctl name="LSM3 MUX" value="TERT_MI2S_TX" />
+        <ctl name="TERT_MI2S_TX LSM Function" value="SWAUDIO" />
+    </path>
+    <path name="listen-voice-wakeup-4">
+        <ctl name="LSM4 MUX" value="TERT_MI2S_TX" />
+        <ctl name="TERT_MI2S_TX LSM Function" value="SWAUDIO" />
+    </path>
+    <path name="listen-voice-wakeup-5">
+        <ctl name="LSM5 MUX" value="TERT_MI2S_TX" />
+        <ctl name="TERT_MI2S_TX LSM Function" value="SWAUDIO" />
+    </path>
+
     <path name="qchat-call">
         <ctl name="PRI_MI2S_RX_Voice Mixer QCHAT" value="1" />
         <ctl name="QCHAT_Tx Mixer TERT_MI2S_TX_QCHAT" value="1" />
@@ -499,23 +555,25 @@
     <path name="speaker">
         <ctl name="RX3 MIX1 INP1" value="RX1" />
         <ctl name="SPK DAC Switch" value="1" />
+	<ctl name="RX3 Digital Volume" value="82" />
     </path>
 
     <path name="speaker-mic">
         <path name="adc3" />
         <ctl name="IIR1 INP1 MUX" value="DEC1" />
+	<ctl name="RX3 Digital Volume" value="88" />
     </path>
 
     <path name="handset">
         <ctl name="RX1 MIX1 INP1" value="RX1" />
         <ctl name="RDAC2 MUX" value="RX1" />
-        <ctl name="RX1 Digital Volume" value="86" />
+        <ctl name="RX1 Digital Volume" value="84" />
         <ctl name="EAR PA Gain" value="POS_6_DB" />
         <ctl name="EAR_S" value="Switch" />
-   </path>
+    </path>
 
     <path name="handset-mic">
-        <path name="adc1" />	<!-- JZZ(zhizhang)@uniscope_drv 20140703 for handset-mic can not work -->  
+        <path name="adc1" />
         <ctl name="IIR1 INP1 MUX" value="DEC1" />
     </path>
 
@@ -570,7 +628,6 @@
 
     <path name="voice-headphones">
         <path name="headphones" />
-        <path name="sidetone-headphone" />
     </path>
 
     <path name="voice-headset-mic">
@@ -578,8 +635,8 @@
     </path>
 
     <path name="speaker-and-headphones">
-        <path name="speaker" />
         <path name="headphones" />
+        <path name="speaker" />
     </path>
 
     <path name="usb-headphones">
@@ -623,14 +680,12 @@
     </path>
 
     <!-- Dual MIC devices -->
-    <!-- JZZ(zhizhang)@uniscope_drv 20140612 for dual mic path setting begin -->    
     <path name="speaker-dmic-endfire">
-        <ctl name="DEC1 MUX" value="ADC1" />
-        <ctl name="ADC2 MUX" value="INP3" />
+        <path name="adc1" />
         <ctl name="DEC2 MUX" value="ADC2" />
         <ctl name="MI2S_TX Channels" value="Two" />
+        <ctl name="ADC2 MUX" value="INP3" />
     </path>
-    <!-- JZZ(zhizhang)@uniscope_drv 20140612 for dual mic path setting end -->    
 
     <path name="dmic-endfire">
         <path name="speaker-dmic-endfire" />
@@ -645,7 +700,7 @@
     </path>
 
     <path name="voice-speaker-dmic-ef">
-        <path name="dmic-endfire" />
+        <path name="speaker-mic" />
     </path>
 
     <path name="voice-rec-dmic-ef">
@@ -714,7 +769,11 @@
     </path>
 
     <path name="voice-tty-vco-handset-mic">
-        <path name="adc3" />
+        <path name="adc1" />
+    </path>
+
+    <path name="listen-handset-mic">
+        <path name="adc1" />
     </path>
 
     <path name="ADSP testfwk">
@@ -724,10 +783,13 @@
     <path name="line">
           <path name="headphones" />
     </path>
+
     <path name="voice-line">
           <path name="voice-headphones" />
     </path>
+
     <path name="speaker-and-line">
           <path name="speaker-and-headphones" />
     </path>
+
 </mixer>
