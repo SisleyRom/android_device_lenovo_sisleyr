@@ -26,6 +26,9 @@ TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
+#cmhw
+BOARD_HARDWARE_CLASS += device/lenovo/sisleyr/lineagehw
+
 # Camera
 BOARD_CAMERA_SENSORS := ov13850_p13v01n imx179_p8n15e
 USE_DEVICE_SPECIFIC_CAMERA := true
