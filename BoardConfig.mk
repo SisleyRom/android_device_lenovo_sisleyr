@@ -20,19 +20,16 @@ include device/cyanogen/msm8916-common/BoardConfigCommon.mk
 
 DEVICE_PATH := device/lenovo/sisleyr
 
-# Assertions
-TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
+# LineageHW
+JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|$(DEVICE_PATH)/lineagehw|**/*.java
 
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
-#cmhw
-BOARD_HARDWARE_CLASS += device/lenovo/sisleyr/lineagehw
-
 # Camera
 BOARD_CAMERA_SENSORS := ov13850_p13v01n imx179_p8n15e
 USE_DEVICE_SPECIFIC_CAMERA := true
-#TARGET_USE_VENDOR_CAMERA_EXT := true
+TARGET_USE_VENDOR_CAMERA_EXT := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 TARGET_USES_NON_TREBLE_CAMERA := true
 
@@ -66,7 +63,8 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 
 # SELinux
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += \
+    $(DEVICE_PATH)/sepolicy
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
