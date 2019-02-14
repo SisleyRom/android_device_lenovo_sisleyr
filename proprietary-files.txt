@@ -273,8 +273,6 @@ vendor/lib64/libsettings.so|3e459839d90a27d2eb23a3c9d030f46a5c4bfaf1
 vendor/lib64/libsystem_health_mon.so
 vendor/lib64/libxml.so
 vendor/lib/libmdmdetect.so
-# Sensors
-vendor/lib64/libcalmodule_akm.so
 
 # Signed Venus (media) firmware
 etc/firmware/venus.b00:vendor/firmware/venus.b00

@@ -59,7 +59,16 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
-    camera.device@1.0-impl
+    camera.device@3.2-impl
+
+PRODUCT_PACKAGES += \
+   libbson
+   #libstlport
+
+	# Permissions
+PRODUCT_COPY_FILES += \
+    frameworks/native/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/native/data/etc/android.hardware.camera.front.xml:system/etc/permissions/android.hardware.camera.front.xml
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -81,11 +90,6 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/gpio-keys.kl \
     $(LOCAL_PATH)/keylayout/ft5x06_ts.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/ft5x06_ts.kl \
     $(LOCAL_PATH)/keylayout/qpnp_pon.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/qpnp_pon.kl
-
-#Health
-PRODUCT_PACKAGES += \
-    android.hardware.health@1.0-service \
-    android.hardware.health@1.0-impl
 
 # Lights
 PRODUCT_PACKAGES += \
@@ -118,8 +122,8 @@ PRODUCT_COPY_FILES += \
 # Sensors
 PRODUCT_PACKAGES += \
     calmodule.cfg \
-    libcalmodule_common \
     sensors.sisleyr \
+    libcalmodule_common \
     sensors.msm8916
 
 PRODUCT_PACKAGES += \
@@ -128,13 +132,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/_hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/_hals.conf
 
-# For userdebug builds
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-	ro.secure=0 \
-	ro.adb.secure=0 \
-	ro.debuggable=1 \
-	persist.sys.root_access=1 \
-	persist.service.adb.enable=1
 
 # USB ID
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
@@ -147,9 +144,6 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     ro.usb.id.ums=2286 \
     ro.usb.id.ums_adb=2285 \
     ro.usb.vid=2970
-
-PRODUCT_PROPERTY_OVERRIDES += \
-	persist.sys.usb.config=mtp,adb
 
 # Wi-Fi
 PRODUCT_COPY_FILES += \
