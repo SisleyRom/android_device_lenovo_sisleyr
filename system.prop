@@ -4,6 +4,23 @@ persist.vendor.audio.fluence.voicecall=false
 persist.vendor.audio.fluence.voicerec=false
 persist.vendor.audio.fluence.speaker=false
 
+af.fast_track_multiplier=1
+audio.deep_buffer.media=true
+audio.offload.min.duration.secs=30
+audio.offload.video=true
+vendor.audio.av.streaming.offload.enable=true
+vendor.audio.offload.buffer.size.kb=64
+vendor.audio.offload.gapless.enabled=true
+vendor.audio_hal.period_size=192
+vendor.voice.path.for.pcm.voip=true
+
+# Bluetooth
+vendor.qcom.bluetooth.soc=pronto
+ro.bluetooth.dun=true
+ro.bluetooth.hfp.ver=1.7
+ro.bluetooth.sap=true
+ro.qualcomm.bt.hci_transport=smd
+
 # Camera
 persist.camera.cpp.duplication=false
 persist.camera.hal.debug.mask=0
@@ -18,6 +35,13 @@ dalvik.vm.heapmaxfree=8m
 
 # Display
 ro.sf.lcd_density=320
+debug.hwui.use_buffer_age=false
+debug.composition.type=c2d
+debug.mdpcomp.idletime=600
+persist.hwc.mdpcomp.enable=true
+persist.hwc.ptor.enable=true
+debug.enable.sglscale=1
+ro.opengles.version=196608
 
 # Factory reset protection
 ro.frp.pst=/dev/block/bootdevice/by-name/config
@@ -27,6 +51,10 @@ ro.product.first_api_level=21
 
 # Latest hardware revision supported
 ro.product.model.platform=1
+
+# Media
+drm.service.enabled=1
+vidc.enc.narrow.searchrange=1
 
 # NITZ
 persist.rild.nitz_plmn=
@@ -40,6 +68,10 @@ persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 
 # Radio
+persist.data.qmi.adb_logmask=0
+persist.radio.add_power_save=1
+persist.radio.apm_sim_not_pwdn=1
+ro.telephony.call_ring.multiple=false
 persist.radio.multisim.config=dsds
 persist.radio.custom_ecc=1
 persist.radio.ecc_hard_1=998
@@ -51,3 +83,9 @@ ril.subscription.types=NV,RUIM
 persist.data.target=dpm1
 ro.telephony.default_network=9,1
 persist.radio.rat_on=combine
+
+# Wi-Fi
+wifi.interface=wlan0
+
+# Wi-Fi display
+persist.debug.wfd.enable=1
