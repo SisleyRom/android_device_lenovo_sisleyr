@@ -22,9 +22,6 @@ TARGET_BOARD_PLATFORM := msm8916
 TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 TARGET_NO_BOOTLOADER := true
 
-# Assertions
-TARGET_BOARD_INFO_FILE := $(DEVICE_PATH)/board-info.txt
-
 # Architecture
 ifneq ($(FORCE_32_BIT),true)
 TARGET_ARCH := arm64
@@ -126,27 +123,22 @@ BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_IMAGE_NAME := Image.gz
+BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
-BOARD_KERNEL_PAGESIZE := 2048
 BOARD_RAMDISK_OFFSET := 0x01000000
 TARGET_KERNEL_CONFIG := foxy_sisleyr_defconfig
 TARGET_KERNEL_SOURCE := kernel/lenovo/sisleyr
 
 # Manifest
-DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml
+DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
 
 # Power
-ifeq ($(TARGET_BOARD_PLATFORM_VARIANT),msm8939)
-TARGET_POWERHAL_SET_INTERACTIVE_EXT := $(PLATFORM_PATH)/power/power_ext.c
-endif
-TARGET_HAS_LEGACY_POWER_STATS := true
-ifeq ($(TARGET_BOARD_PLATFORM_VARIANT),msm8916)
 TARGET_HAS_NO_POWER_STATS := true
-endif
+TARGET_HAS_LEGACY_POWER_STATS := true
 TARGET_HAS_NO_WLAN_STATS := true
 TARGET_USES_INTERACTION_BOOST := true
 
@@ -165,7 +157,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_cm
 
 # Releasetools
-TARGET_RELEASETOOLS_EXTENSIONS := $(PLATFORM_PATH)
+TARGET_DISABLE_OTA_ASSERT := true
 
 # SELinux
 include device/qcom/sepolicy-legacy/sepolicy.mk
@@ -208,4 +200,4 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit from proprietary files
--include vendor/lenovo/sisleyr/BoardConfigVendor.mk
+include vendor/lenovo/sisleyr/BoardConfigVendor.mk

@@ -19,8 +19,6 @@
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-    <bool name="config_useDevInputEventForAudioJack">true</bool>
-
     <!-- Flag indicating whether we should enable the automatic brightness in Settings.
                   config_hardware_automatic_brightness_available is not set, so we will use software implementation -->
     <bool name="config_automatic_brightness_available">true</bool>
@@ -100,10 +98,6 @@
            Must be in the range specified by minimum and maximum. -->
      <integer name="config_screenBrightnessSettingDefault">102</integer>
 
-     <!-- Screen brightness used to dim the screen when the user activity
-           timeout expires.  May be less than the minimum allowed brightness setting
-           that can be set by the user. -->
-    <integer name="config_screenBrightnessDim">5</integer>
 	
     <integer name="config_screenBrightnessDark">5</integer>
 
@@ -149,7 +143,8 @@
 
      <!-- Whether to allow process with media UID to access CameraServiceProxy -->
     <bool name="config_allowMediaUidForCameraServiceProxy">true</bool>
-   <!-- This string array should be overridden by the device to present a list of network
+
+    <!-- This string array should be overridden by the device to present a list of network
          attributes.  This is used by the connectivity manager to decide which networks can coexist
          based on the hardware -->
     <!-- An Array of "[Connection name],[ConnectivityManager.TYPE_xxxx],
@@ -283,7 +278,6 @@
     <!-- Configuration to restart radio upon PDP_DEACTIVATE with
          error cause as Regular deactivation(36). -->
     <bool name="config_restart_radio_on_pdp_fail_regular_deactivation">false</bool>
-
 
     <!-- Base "touch slop" value used by ViewConfiguration as a
          movement threshold where scrolling should begin. -->

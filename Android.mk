@@ -15,7 +15,8 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifeq ($(TARGET_DEVICE), sisleyr)
+ifeq ($(TARGET_DEVICE),sisleyr)
+
 include $(call all-makefiles-under,$(LOCAL_PATH))
 
 include $(CLEAR_VARS)
