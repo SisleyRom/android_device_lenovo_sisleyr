@@ -113,7 +113,7 @@ on boot
 
     # Assign TCP buffer thresholds to be ceiling value of technology maximums
     # Increased technology maximums should be reflected here.
-    write /proc/sys/net/core/rmem_max 8388608
+    write /proc/sys/net/core/rmem_max 16777216
     write /proc/sys/net/core/wmem_max 8388608
 
     # To allow interfaces to get v6 address when tethering is enabled
@@ -227,14 +227,15 @@ service ril-daemon2 /vendor/bin/hw/rild -c 2
 
 service charger /charger
     class charger
-    group log
-    seclabel u:r:charger:s0
+    user root
+    group root system radio log
+    seclabel u:r:healthd:s0
 
 # start camera server as daemon
 service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     class main
     user camera
-    group camera system inet input graphics
+    group camera gps system inet input graphics
     writepid /dev/cpuset/camera-daemon/tasks
 
 on property:init.svc.media=restarting

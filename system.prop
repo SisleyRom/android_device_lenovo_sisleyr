@@ -3,7 +3,6 @@ ro.vendor.audio.sdk.fluencetype=fluence
 persist.vendor.audio.fluence.voicecall=false
 persist.vendor.audio.fluence.voicerec=false
 persist.vendor.audio.fluence.speaker=false
-
 af.fast_track_multiplier=1
 audio.deep_buffer.media=true
 audio.offload.min.duration.secs=30
@@ -13,6 +12,9 @@ vendor.audio.offload.buffer.size.kb=64
 vendor.audio.offload.gapless.enabled=true
 vendor.audio_hal.period_size=192
 vendor.voice.path.for.pcm.voip=true
+
+ro.config.media_vol_steps=25
+ro.config.vc_call_vol_steps=7
 
 # Bluetooth
 vendor.qcom.bluetooth.soc=pronto
@@ -56,6 +58,9 @@ ro.product.model.platform=1
 drm.service.enabled=1
 vidc.enc.narrow.searchrange=1
 
+# Memory optimizations
+ro.vendor.qti.sys.fw.bservice_enable=true
+
 # NITZ
 persist.rild.nitz_plmn=
 persist.rild.nitz_long_ons_0=
@@ -66,6 +71,13 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
+
+# Perf
+ro.config.max_starting_bg=8
+ro.min_freq_0=800000
+ro.core_ctl_min_cpu=0
+ro.core_ctl_max_cpu=4
+ro.vendor.extension_library=libqti-perfd-client.so
 
 # Radio
 persist.data.qmi.adb_logmask=0
@@ -86,6 +98,3 @@ persist.radio.rat_on=combine
 
 # Wi-Fi
 wifi.interface=wlan0
-
-# Wi-Fi display
-persist.debug.wfd.enable=1
