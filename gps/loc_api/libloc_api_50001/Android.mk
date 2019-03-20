@@ -83,10 +83,6 @@ LOCAL_CFLAGS += \
     -D_ANDROID_ \
     -O3
 
-ifeq ($(TARGET_BUILD_VARIANT),user)
-   LOCAL_CFLAGS += -DTARGET_BUILD_VARIANT_USER
-endif
-
 ## Includes
 LOCAL_C_INCLUDES:= \
     $(TARGET_OUT_HEADERS)/gps.utils \
