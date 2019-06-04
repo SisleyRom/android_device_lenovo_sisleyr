@@ -39,59 +39,15 @@ on early-init
 on fs
     wait /dev/block/platform/soc.0/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc.0/${ro.boot.bootdevice} /dev/block/bootdevice
-    mount_all /vendor/etc/fstab.qcom --early
+
+    mount_all /vendor/etc/fstab.qcom
 
     restorecon_recursive /persist
-
-    # Start HW service manager early
-    start hwservicemanager
-
-on late-fs
-    # Start services for bootanim
-    start vendor.configstore-hal
-    start surfaceflinger
-    start bootanim
-    start vendor.gralloc-2-0
-
-    mount_all /vendor/etc/fstab.qcom --late
-
-on post-fs
-    # Start devices by sysfs trigger
-    start devstart_sh
-
-    # Allow writing to the kernel trace log.
-    chmod 0222 /sys/kernel/debug/tracing/trace_marker
 
 on post-fs-data
     # Create folder for mm-qcamera-daemon
     mkdir /data/fdAlbum 0770 camera camera
     mkdir /data/misc/camera 0770 camera camera
-
-    mkdir /data/misc/ipa 0700 net_admin net_admin
-
-    # Create the directories used by CnE subsystem
-    mkdir /data/connectivity 0771 system system
-    chown system system /data/connectivity
-
-    # Create the directories used by DPM subsystem
-    mkdir /data/dpm 0771 system system
-    chown system system /data/dpm
-
-    mkdir /data/dpm/nsrm 0771 system system
-    chown system system /data/dpm/nsrm
-
-    # Mark the copy complete flag to not completed
-    write /data/misc/radio/copy_complete 0
-    chown radio radio /data/misc/radio/copy_complete
-    chmod 0660 /data/misc/radio/copy_complete
-
-    # File flags for prebuilt ril db file
-    write /data/misc/radio/prebuilt_db_support 1
-    chown radio radio /data/misc/radio/prebuilt_db_support
-    chmod 0400 /data/misc/radio/prebuilt_db_support
-    write /data/misc/radio/db_check_done 0
-    chown radio radio /data/misc/radio/db_check_done
-    chmod 0660 /data/misc/radio/db_check_done
 
     # Create directory used by display clients
     mkdir /data/misc/display 0770 system graphics
@@ -105,23 +61,10 @@ on post-fs-data
     mkdir /data/misc/location/mq 0770 gps gps
     mkdir /data/misc/location/xtwifi 0770 gps gps
 
-    # Raise SDCC idle timeout value to 10 seconds
-    write /sys/devices/platform/msm_sdcc.3/idle_timeout 10
-
     # Create the directories used by the Wireless subsystem
     mkdir /data/vendor/wifi 0770 wifi wifi
-    mkdir /data/vendor/wifi/sockets 0770 wifi wifi
-    mkdir /data/vendor/wifi/hostapd/ctrl 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
-    mkdir /data/vendor/wifi/wpa_supplicant 0770 wifi wifi
-
-    # Ensure .bt_nv.bin is owned by bluetooth
-    chown bluetooth bluetooth /persist/.bt_nv.bin
-
-    # Create directory for IMS services
-    mkdir /data/shared 0755
-    chown system system /data/shared
 
     # Create /data/time folder for time-services
     mkdir /data/time 0700 system system
@@ -137,9 +80,6 @@ on post-fs-data
 on early-boot
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
-
-    # Busy loop to wait for devices booted by devstart_sh just in case device not ready
-    exec - root root system -- /system/vendor/bin/init.qcom.devwait.sh
 
     # Subsystem Restart
     # Venus
@@ -170,9 +110,6 @@ on boot
 
     # Create NETMGR daemon socket area
     mkdir /dev/socket/netmgr 0750 radio radio
-
-    # Allow RILD to access /proc/cmdline
-    chmod 0644 /proc/cmdline
 
     # Assign TCP buffer thresholds to be ceiling value of technology maximums
     # Increased technology maximums should be reflected here.
@@ -215,10 +152,6 @@ on boot
     chown system graphics /sys/class/graphics/fb0/modes
     chmod 0664 /sys/class/graphics/fb0/modes
 
-
-    # Wifi firmware reload path
-    chown wifi wifi /sys/module/wlan/parameters/fwpath
-
 service irsc_util /system/vendor/bin/irsc_util "/system/vendor/etc/sec_config"
     class main
     user root
@@ -230,11 +163,6 @@ service rmt_storage /system/vendor/bin/rmt_storage
     group system wakelock
     writepid /dev/cpuset/system-background/tasks
     shutdown critical
-    ioprio rt 0
-
-service tftp_server /system/vendor/bin/tftp_server
-   class main
-   user root
 
 service hciattach /system/vendor/bin/init.qcom.bt.sh
     class late_start
@@ -264,10 +192,16 @@ service qmuxd /system/vendor/bin/qmuxd
     group radio audio bluetooth gps oem_2950 wakelock
     writepid /dev/cpuset/system-background/tasks
 
+service msm_irqbalance /system/vendor/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
+    class core
+    user root
+    group root
+    writepid /dev/cpuset/system-background/tasks
+
 service netmgrd /system/vendor/bin/netmgrd
     class main
     user root
-    group root wifi wakelock radio inet system oem_2950
+    group root wifi wakelock radio inet
     writepid /dev/cpuset/system-background/tasks
 
 # Adjust socket buffer to enlarge TCP receive window for high bandwidth
@@ -291,34 +225,20 @@ service ril-daemon2 /vendor/bin/hw/rild -c 2
     group radio cache inet misc audio log readproc wakelock
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
-service charger /sbin/poweroffcharge
+service charger /charger
     class charger
-    user root
-    group root system graphics
-    seclabel u:r:charger:s0
-
-service qcom-sh  /system/vendor/bin/init.qcom.sh
-    class late_start
-    user root
-    oneshot
-
-service per_mgr /system/vendor/bin/pm-service
-    class core
-    user system
-    group system net_raw
+    group log
+    seclabel u:r:healthd:s0
 
 # start camera server as daemon
 service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
-    class main
+    class late_start
     user camera
-    group camera gps system inet input graphics
+    group camera system inet input graphics
     writepid /dev/cpuset/camera-daemon/tasks
 
-on property:init.svc.media=restarting
-    restart qcamerasvr
-
-on property:init.svc.servicemanager=restarting
-    restart qcamerasvr
+on property:sys.boot_completed=1
+    restart cameraserver
 
 service qseecomd /system/vendor/bin/qseecomd
     class core
@@ -326,13 +246,21 @@ service qseecomd /system/vendor/bin/qseecomd
     group root
     writepid /dev/cpuset/system-background/tasks
 
-service perfd /vendor/bin/perfd
-    class late_start
+service perfd /system/vendor/bin/perfd
+    class main
     user root
     group root readproc system
-    socket perfd seqpacket 0666 root system
-    writepid /dev/cpuset/system-background/tasks
     disabled
+    writepid /dev/cpuset/system-background/tasks
+
+service thermal-engine /system/vendor/bin/thermal-engine
+    class main
+    user root
+    socket thermal-send-client stream 0666 system system
+    socket thermal-recv-client stream 0660 system system
+    socket thermal-recv-passive-client stream 0666 system system
+    group root
+    writepid /dev/cpuset/system-background/tasks
 
 service time_daemon /system/vendor/bin/time_daemon
     class late_start
@@ -349,10 +277,6 @@ service ppd /system/vendor/bin/mm-pp-daemon
 
 on property:init.svc.surfaceflinger=stopped
     stop ppd
-
-on property:init.svc.surfaceflinger=restarting
-    stop hwcomposer-2-1
-    start hwcomposer-2-1
 
 on property:init.svc.surfaceflinger=running
     start ppd
@@ -378,14 +302,3 @@ service wcnss-service /system/vendor/bin/wcnss_service
 service qcom-mem /system/vendor/bin/init.qcom.mem.sh
     disabled
     oneshot
-
-service devstart_sh /system/vendor/bin/init.qcom.devstart.sh
-    class main
-    user root
-    group root system
-    disabled
-    oneshot
-
-on property:sys.boot_completed=1
-    # Enable ZRAM on boot_complete
-    swapon_all /vendor/etc/fstab.qcom

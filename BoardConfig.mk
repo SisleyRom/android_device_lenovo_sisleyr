@@ -18,7 +18,6 @@
 DEVICE_PATH := device/lenovo/sisleyr
 
 # Platform
-BOARD_USES_QCOM_HARDWARE := true
 TARGET_BOARD_PLATFORM := msm8916
 TARGET_BOOTLOADER_BOARD_NAME := MSM8916
 TARGET_NO_BOOTLOADER := true
@@ -59,57 +58,40 @@ TARGET_BOOT_ANIMATION_RES := 720
 TARGET_SCREEN_HEIGHT := 1280
 TARGET_SCREEN_WIDTH := 720
 
-TARGET_BOOTANIMATION_HALF_RES := true
-TARGET_BOOTANIMATION_MULTITHREAD_DECODE := true
-TARGET_BOOTANIMATION_PRELOAD := true
-TARGET_BOOTANIMATION_TEXTURE_CACHE := true
-
 # Camera
 BOARD_CAMERA_SENSORS := ov13850_p13v01n imx179_p8n15e ov5693
 USE_DEVICE_SPECIFIC_CAMERA := true
-TARGET_USE_VENDOR_CAMERA_EXT := true
+#TARGET_USE_VENDOR_CAMERA_EXT := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 TARGET_USES_NON_TREBLE_CAMERA := true
 TARGET_NEEDS_LEGACY_CAMERA_HAL1_DYN_NATIVE_HANDLE := true
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
-	/system/bin/mediaserver=22 \
 	/system/vendor/bin/mm-qcamera-daemon=22
 
-# Dex optimizion
-ifeq ($(HOST_OS),linux)
- ifneq ($(TARGET_BUILD_VARIANT),eng)
-   WITH_DEXPREOPT := true
-   WITH_DEXPREOPT_DEBUG_INFO := false
-   USE_DEX2OAT_DEBUG := false
-   DONT_DEXPREOPT_PREBUILTS := true
-   WITH_DEXPREOPT_PIC := true
-   WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
- endif
-endif
-PRODUCT_SYSTEM_SERVER_COMPILER_FILTER := speed-profile
-PRODUCT_ALWAYS_PREOPT_EXTRACTED_APK := true
-PRODUCT_USE_PROFILE_FOR_BOOT_IMAGE := true
-PRODUCT_DEX_PREOPT_BOOT_IMAGE_PROFILE_LOCATION := frameworks/base/config/boot-image-profile.txt
-PRODUCT_MINIMIZE_JAVA_DEBUG_INFO := true
-PRODUCT_ART_TARGET_INCLUDE_DEBUG_BUILD := false
-PRODUCT_DEXPREOPT_SPEED_APPS += SystemUI
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+BACKLIGHT_PATH := "/sys/class/leds/lcd-backlight/brightness"
+CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/charging_enabled"
+BOARD_CHARGING_CMDLINE_NAME := "androidboot.mode"
+BOARD_CHARGING_CMDLINE_VALUE := "usb_cable"
 
 # Display
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
 MAX_EGL_CACHE_SIZE := 2048*1024
 
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x02000000
 TARGET_CONTINUOUS_SPLASH_ENABLED := true
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
-TARGET_USES_C2D_COMPOSITION := true
 TARGET_USES_ION := true
 TARGET_USES_NEW_ION_API := true
+USE_OPENGL_RENDERER := true
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
-TARGET_LEGACY_HW_DISK_ENCRYPTION := true
-TARGET_CRYPTFS_HW_PATH := vendor/qcom/opensource/cryptfs_hw
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 # Exclude serif fonts for saving system.img size.
@@ -137,14 +119,6 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 TARGET_NO_RPC := true
 USE_DEVICE_SPECIFIC_GPS := true
 
-# Healthd
-BOARD_CHARGER_ENABLE_SUSPEND := true
-BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
-
-# HWUI
-HWUI_COMPILE_FOR_PERF := true
-
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm8916
 TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8916
@@ -159,18 +133,11 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
-LZMA_RAMDISK_TARGETS := recovery
-KERNEL_TOOLCHAIN := $(shell pwd)/prebuilts/gcc/linux-x86/aarch64/aarch64-opt-linux-android/bin
-TARGET_KERNEL_CONFIG := reborn_sisleyr_defconfig
-TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-opt-linux-android-
-TARGET_KERNEL_SOURCE := kernel/lenovo/reborn
-
-# Lights
-TARGET_PROVIDES_LIBLIGHT := true
+TARGET_KERNEL_CONFIG := lineageos_sisleyr_defconfig
+TARGET_KERNEL_SOURCE := kernel/lenovo/sisley
 
 # HIDL
 DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
-DEVICE_MATRIX_FILE := $(DEVICE_PATH)/compatibility_matrix.xml
 
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
@@ -178,9 +145,6 @@ TARGET_USES_MEDIA_EXTENSIONS := true
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
 PRODUCT_ENFORCE_RRO_TARGETS := framework-res
-
-# Peripheral manager
-TARGET_PER_MGR_ENABLED := true
 
 # Power
 TARGET_HAS_NO_POWER_STATS := true
@@ -190,6 +154,9 @@ TARGET_USES_INTERACTION_BOOST := true
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+
+# QCOM
+BOARD_USES_QCOM_HARDWARE := true
 
 # Radio
 MALLOC_SVELTE := true
@@ -202,10 +169,6 @@ TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_cm
 
 # Releasetools
 TARGET_DISABLE_OTA_ASSERT := true
-
-# SDClang
-TARGET_USE_SDCLANG := false
-SDCLANG := false
 
 # SELinux
 include device/qcom/sepolicy-legacy/sepolicy.mk
@@ -221,7 +184,10 @@ TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib/libmmcamera2_imglib_modules.so|libshim_atomic.so \
     /system/vendor/lib/libqomx_jpegenc.so|libshim_atomic.so \
     /system/vendor/lib/libmmcamera2_stats_modules.so|libshim_atomic.so \
-    /system/vendor/lib/hw/camera.vendor.msm8916.so|libshim_atomic.so
+    /system/vendor/lib/hw/camera.vendor.msm8916.so|libshim_atomic.so \
+    /system/vendor/lib/hw/camera.vendor.msm8916.so|libboringssl-compat.so \
+    /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so \
+    /system/lib/libcrypto.so|libboringssl-compat.so
 
 # Wi-Fi
 BOARD_HAS_QCOM_WLAN := true

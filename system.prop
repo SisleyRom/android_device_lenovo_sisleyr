@@ -18,132 +18,71 @@ vendor.audio_hal.period_size=192
 vendor.voice.path.for.pcm.voip=true
 
 # Bluetooth
-qcom.bluetooth.soc=smd
 vendor.qcom.bluetooth.soc=pronto
 ro.bluetooth.dun=true
 ro.bluetooth.hfp.ver=1.7
 ro.bluetooth.sap=true
 ro.qualcomm.bt.hci_transport=smd
 
-# Boot
-ro.build.shutdown_timeout=0
-sys.vendor.shutdown.waittime=500
-
 # Camera
 persist.camera.cpp.duplication=false
 persist.camera.hal.debug.mask=0
-
-# Cloudflare DNS
-net.dns1=1.1.1.1
-net.dns2=1.0.0.1
-net.rmnet0.dns1=1.1.1.1
-net.rmnet0.dns2=1.0.0.1
-net.gprs.dns1=1.1.1.1
-net.gprs.dns2=1.0.0.1
-net.ppp0.dns1=1.1.1.1
-net.ppp0.dns2=1.0.0.1
-net.wlan0.dns1=1.1.1.1
-net.wlan0.dns2=1.0.0.1
-net.eth0.dns1=1.1.1.1
-net.eth0.dns2=1.0.0.1
-dhcp.eth0.dns1=1.1.1.1
-dhcp.eth0.dns2=1.0.0.1
-dhcp.wlan0.dns1=1.1.1.1
-dhcp.wlan0.dns2=1.0.0.1
+media.stagefright.legacyencoder=true
+media.stagefright.less-secure=true
 
 # Dalvik
-dalvik.vm.checkjni=false
-dalvik.vm.verify-bytecode=false
-persist.sys.purgeable_assets=1
-
-# Dex2oat optimisation
-dalvik.vm.boot-dex2oat-threads=8
-dalvik.vm.dex2oat-flags=--no-watch-dog
-dalvik.vm.dex2oat-swap=false
-dalvik.vm.dex2oat-threads=4
-dalvik.vm.image-dex2oat-threads=4
-ro.sys.fw.dex2oat_thread_count=4
+dalvik.vm.heapstartsize=8m
+dalvik.vm.heapgrowthlimit=192m
+dalvik.vm.heapsize=512m
+dalvik.vm.heaptargetutilization=0.75
+dalvik.vm.heapminfree=512k
+dalvik.vm.heapmaxfree=8m
 
 # Display
 ro.sf.lcd_density=320
 debug.hwui.use_buffer_age=false
 debug.composition.type=c2d
-debug.cpurend.vsync=false
 debug.mdpcomp.idletime=600
-debug.sf.disable_backpressure=1
-debug.sf.latch_unsignaled=1
-debug.sf.recomputecrop=0
 persist.hwc.mdpcomp.enable=true
 persist.hwc.ptor.enable=true
 debug.enable.sglscale=1
 ro.opengles.version=196608
 
-# Fling velocities
-ro.min.fling_velocity=160
-ro.max.fling_velocity=20000
+# Factory reset protection
+ro.frp.pst=/dev/block/bootdevice/by-name/config
 
-# Healthd
-ro.enable_boot_charger_mode=1
+# First api level, device has been commercially launched
+ro.product.first_api_level=21
 
-# IMS
-persist.dbg.volte_avail_ovr=0
-persist.dbg.vt_avail_ovr=0
-persist.dbg.wfc_avail_ovr=0
+# Latest hardware revision supported
+ro.product.model.platform=1
 
 # Media
 drm.service.enabled=1
-mm.enable.sec.smoothstreaming=true
-vendor.mediacodec.binder.size=6
 vidc.enc.narrow.searchrange=1
-
-# Play store
-ro.com.google.clientidbase.am=android-lenovo
-ro.com.google.clientidbase.gmm=android-lenovo
-ro.com.google.clientidbase.ms=android-lenovo
-ro.com.google.clientidbase.yt=android-lenovo
 
 # Perf
 ro.config.max_starting_bg=8
+ro.vendor.extension_library=libqti-perfd-client.so
 ro.core_ctl_min_cpu=0
 ro.core_ctl_max_cpu=4
-ro.min_freq_0=200000
-ro.vendor.extension_library=libqti-perfd-client.so
-ro.vendor.qti.am.reschedule_service=true
-ro.vendor.qti.sys.fw.bservice_enable=true
-ro.vendor.qti.sys.fw.bservice_limit=5
-ro.vendor.qti.sys.fw.bservice_age=5000
-ro.vendor.qti.sys.fw.use_trim_settings=true
-ro.vendor.qti.sys.fw.empty_app_percent=50
-ro.vendor.qti.sys.fw.trim_empty_percent=100
-ro.vendor.qti.sys.fw.trim_cache_percent=100
-ro.vendor.qti.sys.fw.trim_enable_memory=1073741824
-sys.use_fifo_ui=1
-
-# Power Manager
-pm.sleep_mode=1
 
 # Radio
-persist.data.netmgrd.qos.enable=true
 persist.data.qmi.adb_logmask=0
-persist.data.target=dpm1
 persist.radio.add_power_save=1
-persist.radio.aosp_usr_pref_sel=true
 persist.radio.apm_sim_not_pwdn=1
-persist.radio.custom_ecc=1
-persist.radio.flexmap_type=dds
-persist.radio.mt_sms_ack=20
-persist.radio.multisim.config=dsds
-persist.radio.no_cons_man_roam=1
-persist.radio.rat_on=combine
-persist.radio.sib16_support=1
-ril.ecclist=000,08,100,101,102,110,112,118,119,120,122,911,999
-ril.ecclist1=000,08,100,101,102,110,112,118,119,120,122,911,999
-rild.libpath=/system/vendor/lib64/libril-qc-qmi-1.so
-rild.libargs=-d /dev/smd0
-ro.config.always_show_roaming=true
 ro.telephony.call_ring.multiple=false
-ro.telephony.default_network=9,1
+persist.radio.multisim.config=dsds
+persist.radio.custom_ecc=1
+persist.radio.ecc_hard_1=998
+persist.radio.ecc_hard_count=1
 DEVICE_PROVISIONED=1
+rild.libargs=-d /dev/smd0
+rild.libpath=/system/vendor/lib64/libril-qc-qmi-1.so
+ril.subscription.types=NV,RUIM
+persist.data.target=dpm1
+ro.telephony.default_network=9,1
+persist.radio.rat_on=combine
 
 # Wi-Fi
 wifi.interface=wlan0

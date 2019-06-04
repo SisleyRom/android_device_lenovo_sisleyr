@@ -23,9 +23,8 @@
     <ctl name="TTY Mode" value="Off" />
     <ctl name="HPHL Volume" value="9" />
     <ctl name="HPHR Volume" value="9" />
-    <ctl name="RX1 Digital Volume" value="86" />
+    <ctl name="RX1 Digital Volume" value="84" />
     <ctl name="RX2 Digital Volume" value="84" />
-    <!-- kangyan @uniscope_drv 201406014 for speaker volume,the default valume is 84 -->
     <ctl name="RX3 Digital Volume" value="84" />
     <ctl name="IIR1 INP1 Volume" value="84" />
     <ctl name="IIR1 INP2 Volume" value="84" />
@@ -509,13 +508,13 @@
     <path name="handset">
         <ctl name="RX1 MIX1 INP1" value="RX1" />
         <ctl name="RDAC2 MUX" value="RX1" />
-        <ctl name="RX1 Digital Volume" value="86" />
+        <ctl name="RX1 Digital Volume" value="84" />
         <ctl name="EAR PA Gain" value="POS_6_DB" />
         <ctl name="EAR_S" value="Switch" />
-   </path>
+    </path>
 
     <path name="handset-mic">
-        <path name="adc1" />	<!-- JZZ(zhizhang)@uniscope_drv 20140703 for handset-mic can not work -->  
+        <path name="adc1" />
         <ctl name="IIR1 INP1 MUX" value="DEC1" />
     </path>
 
@@ -724,10 +723,13 @@
     <path name="line">
           <path name="headphones" />
     </path>
+
     <path name="voice-line">
           <path name="voice-headphones" />
     </path>
+
     <path name="speaker-and-line">
           <path name="speaker-and-headphones" />
     </path>
+
 </mixer>

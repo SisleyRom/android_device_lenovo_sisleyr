@@ -75,14 +75,10 @@ PRODUCT_PACKAGES += \
     Snap
 
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-impl \
-    camera.device@3.2-impl
+    android.hardware.camera.provider@2.4-impl
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
-
-# Dalvik
-$(call inherit-product, frameworks/native/build/phone-xhdpi-2048-dalvik-heap.mk)
 
 # Display
 PRODUCT_PACKAGES += \
@@ -95,6 +91,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     android.hardware.graphics.allocator@2.0-impl \
+    android.hardware.graphics.allocator@2.0-service \
     android.hardware.graphics.composer@2.1-impl \
     android.hardware.graphics.mapper@2.0-impl \
     android.hardware.memtrack@1.0-impl \
@@ -102,7 +99,8 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm@1.0-impl
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service
 
 # FM
 PRODUCT_PACKAGES += \
@@ -130,9 +128,6 @@ PRODUCT_PACKAGES += \
     android.hardware.health@2.0-impl \
     android.hardware.health@2.0-service
 
-PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
-    ro.enable_boot_charger_mode=1
-
 # HIDL
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
@@ -149,10 +144,7 @@ PRODUCT_PACKAGES += \
     ueventd.qcom.rc
 
 PRODUCT_PACKAGES += \
-    init.qcom.sh \
     init.qcom.bt.sh \
-    init.qcom.devstart.sh \
-    init.qcom.devwait.sh \
     init.qcom.mem.sh
 
 # IRSC
@@ -172,10 +164,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl \
     android.hardware.keymaster@3.0-service
-
-# Lights
-PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.sisley
 
 # LiveDisplay
 PRODUCT_PACKAGES += \
@@ -201,40 +189,6 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video_le.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml
-
-# Nubia charger
-PRODUCT_PACKAGES += \
-    poweroffcharge
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/charger/images/POWER1.png:$(TARGET_OUT_DIR)/root/res/images/POWER1.png \
-    $(LOCAL_PATH)/charger/images/POWER10.png:$(TARGET_OUT_DIR)/root/res/images/POWER10.png \
-    $(LOCAL_PATH)/charger/images/POWER2.png:$(TARGET_OUT_DIR)/root/res/images/POWER2.png \
-    $(LOCAL_PATH)/charger/images/POWER3.png:$(TARGET_OUT_DIR)/root/res/images/POWER3.png \
-    $(LOCAL_PATH)/charger/images/POWER4.png:$(TARGET_OUT_DIR)/root/res/images/POWER4.png \
-    $(LOCAL_PATH)/charger/images/POWER5.png:$(TARGET_OUT_DIR)/root/res/images/POWER5.png \
-    $(LOCAL_PATH)/charger/images/POWER6.png:$(TARGET_OUT_DIR)/root/res/images/POWER6.png \
-    $(LOCAL_PATH)/charger/images/POWER7.png:$(TARGET_OUT_DIR)/root/res/images/POWER7.png \
-    $(LOCAL_PATH)/charger/images/POWER8.png:$(TARGET_OUT_DIR)/root/res/images/POWER8.png \
-    $(LOCAL_PATH)/charger/images/POWER9.png:$(TARGET_OUT_DIR)/root/res/images/POWER9.png \
-    $(LOCAL_PATH)/charger/images/background.png:$(TARGET_OUT_DIR)/root/res/images/background.png \
-    $(LOCAL_PATH)/charger/images/chargeLogo.png:$(TARGET_OUT_DIR)/root/res/images/chargeLogo.png \
-    $(LOCAL_PATH)/charger/images/error.png:$(TARGET_OUT_DIR)/root/res/images/error.png \
-    $(LOCAL_PATH)/charger/images/full.png:$(TARGET_OUT_DIR)/root/res/images/full.png \
-    $(LOCAL_PATH)/charger/images/green_0.png:$(TARGET_OUT_DIR)/root/res/images/green_0.png \
-    $(LOCAL_PATH)/charger/images/green_1.png:$(TARGET_OUT_DIR)/root/res/images/green_1.png \
-    $(LOCAL_PATH)/charger/images/percentage.png:$(TARGET_OUT_DIR)/root/res/images/percentage.png \
-    $(LOCAL_PATH)/charger/images/percentage_full.png:$(TARGET_OUT_DIR)/root/res/images/percentage_full.png \
-    $(LOCAL_PATH)/charger/images/red_0.png:$(TARGET_OUT_DIR)/root/res/images/red_0.png \
-    $(LOCAL_PATH)/charger/images/red_1.png:$(TARGET_OUT_DIR)/root/res/images/red_1.png \
-    $(LOCAL_PATH)/charger/images/red_2.png:$(TARGET_OUT_DIR)/root/res/images/red_2.png \
-    $(LOCAL_PATH)/charger/images/red_3.png:$(TARGET_OUT_DIR)/root/res/images/red_3.png \
-    $(LOCAL_PATH)/charger/images/red_4.png:$(TARGET_OUT_DIR)/root/res/images/red_4.png \
-    $(LOCAL_PATH)/charger/images/red_5.png:$(TARGET_OUT_DIR)/root/res/images/red_5.png \
-    $(LOCAL_PATH)/charger/images/red_6.png:$(TARGET_OUT_DIR)/root/res/images/red_6.png \
-    $(LOCAL_PATH)/charger/images/red_7.png:$(TARGET_OUT_DIR)/root/res/images/red_7.png \
-    $(LOCAL_PATH)/charger/images/red_8.png:$(TARGET_OUT_DIR)/root/res/images/red_8.png \
-    $(LOCAL_PATH)/charger/images/red_9.png:$(TARGET_OUT_DIR)/root/res/images/red_9.png
 
 # Permissions
 PRODUCT_COPY_FILES += \
@@ -271,9 +225,9 @@ PRODUCT_PACKAGES += \
     libxml2
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
-    $(LOCAL_PATH)/configs/data/qmi_config.xml:system/etc/data/qmi_config.xml \
-    $(LOCAL_PATH)/configs/data/dsi_config.xml:system/etc/data/dsi_config.xml
+    $(LOCAL_PATH)/configs/data/netmgr_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/netmgr_config.xml \
+    $(LOCAL_PATH)/configs/data/qmi_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/qmi_config.xml \
+    $(LOCAL_PATH)/configs/data/dsi_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/dsi_config.xml
 
 # RenderScript HAL
 PRODUCT_PACKAGES += \
@@ -302,10 +256,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/_hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/_hals.conf
 
-# TextClassifier smart selection model
-PRODUCT_PACKAGES += \
-    textclassifier.bundle1
-
 # Telephony
 PRODUCT_PACKAGES += qti-telephony-common
 PRODUCT_BOOT_JARS += telephony-ext
@@ -316,7 +266,7 @@ PRODUCT_PACKAGES += \
 
 # USB
 PRODUCT_PACKAGES += \
-    android.hardware.usb@1.0-service.sisley
+    android.hardware.usb@1.0-service.basic
 
 # For userdebug builds
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
@@ -324,7 +274,8 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	ro.adb.secure=0 \
 	ro.debuggable=1 \
 	persist.sys.root_access=1 \
-	persist.service.adb.enable=1
+	persist.service.adb.enable=1 \
+	persist.sys.usb.config=mtp,adb
 
 PRODUCT_PROPERTY_OVERRIDES += \
 	persist.sys.usb.config=mtp,adb
@@ -349,7 +300,6 @@ PRODUCT_PACKAGES += \
 # Wi-Fi
 PRODUCT_PACKAGES += \
     libwcnss_qmi \
-    libwpa_client \
     wcnss_service
 
 PRODUCT_PACKAGES += \
