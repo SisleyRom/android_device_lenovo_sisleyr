@@ -60,17 +60,19 @@ TARGET_BOOTANIMATION_PRELOAD := true
 TARGET_BOOTANIMATION_TEXTURE_CACHE := true
 
 # Camera
-BOARD_CAMERA_SENSORS := ov13850_p13v01n imx179_p8n15e
+BOARD_CAMERA_SENSORS := ov13850_p13v01n imx179_p8n15e ov5693
 USE_DEVICE_SPECIFIC_CAMERA := true
-#TARGET_USES_NON_TREBLE_CAMERA := true
+TARGET_USES_NON_TREBLE_CAMERA := true
 #TARGET_USE_VENDOR_CAMERA_EXT := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
 TARGET_USES_MEDIA_EXTENSIONS := true
 TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_NEEDS_LEGACY_CAMERA_HAL1_DYN_NATIVE_HANDLE := true
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
+	/system/vendor/lib/libarcsoft_flawless_face_hal.so=23 \
+	/system/vendor/lib/libmmcamera_faceproc.so=23 \
 	/system/bin/mediaserver=22 \
-	/system/vendor/bin/mm-qcamera-daemon=22
+	/system/vendor/bin/mm-qcamera-daemon=23
 
 # Dex optimizion
 ifeq ($(HOST_OS),linux)
@@ -130,7 +132,8 @@ TARGET_QCOM_NO_FM_FIRMWARE := true
 # Healthd
 BOARD_CHARGER_ENABLE_SUSPEND := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
-BACKLIGHT_PATH := /sys/class/leds/lcd-backlight/brightness
+CHARGING_ENABLED_PATH := "/sys/class/power_supply/battery/charging_enabled"
+WITH_LINEAGE_CHARGER := true
 BOARD_CHARGING_CMDLINE_NAME := "androidboot.mode"
 BOARD_CHARGING_CMDLINE_VALUE := "usb_cable"
 
@@ -163,6 +166,9 @@ DEVICE_MANIFEST_FILE := $(DEVICE_PATH)/manifest.xml
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
+
+# Lineage hardware
+JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|$(DEVICE_PATH)/lineagehw|**/*.java
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay
@@ -221,7 +227,10 @@ TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib/libmmcamera2_imglib_modules.so|libshim_atomic.so \
     /system/vendor/lib/libqomx_jpegenc.so|libshim_atomic.so \
     /system/vendor/lib/libmmcamera2_stats_modules.so|libshim_atomic.so \
-    /system/vendor/lib/hw/camera.vendor.msm8916.so|libshim_atomic.so
+    /system/vendor/lib/hw/camera.vendor.msm8916.so|libshim_atomic.so \
+    /system/vendor/lib/hw/camera.vendor.msm8916.so|libboringssl-compat.so \
+    /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so \
+    /system/lib/libcrypto.so|libboringssl-compat.so
 
 # Wi-Fi
 BOARD_HAS_QCOM_WLAN := true

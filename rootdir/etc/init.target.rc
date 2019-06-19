@@ -60,6 +60,33 @@ on boot
     restorecon /sys/class/input/input3/gsensor_cali_y
     restorecon /sys/class/input/input3/gsensor_cali_z
 
+#led
+	#echo timer > /sys/class/leds/rgbled/trigger
+	write /sys/class/leds/rgbled/trigger "timer"
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/green/blink
+    chown system system /sys/class/leds/blue/blink
+    chown system system /sys/class/leds/red/led_time
+    chown system system /sys/class/leds/green/led_time
+    chown system system /sys/class/leds/blue/led_time
+    chmod 664 /sys/class/leds/torch-light/brightness
+    chmod 664 /sys/class/leds/rgbled/brightness
+    chmod 664 /sys/class/leds/test-led/brightness
+    restorecon /sys/class/leds/torch-light/brightness
+    restorecon /sys/class/leds/rgbled/brightness
+    restorecon /sys/class/leds/test-led/brightness
+    chmod 0664 /sys/class/leds/rgbled/delay_off
+    chown system system /sys/class/leds/rgbled/delay_off
+    chmod 0664 /sys/class/leds/rgbled/delay_on
+    chown system system /sys/class/leds/rgbled/delay_on
+    chmod 0664 /sys/class/leds/test-led/brightness
+    chown system system /sys/class/leds/test-led/brightness
+    chmod 0664 /sys/class/leds/rgbled/brightness
+    chown system system /sys/class/leds/rgbled/brightness
+    chmod 0664 /sys/class/leds/rgbled/trigger
+    chown system system /sys/class/leds/rgbled/trigger
+    restorecon /sys/class/leds/test-led/brightness
+
 #touchscreen
     chown system system /sys/board_properties/tpd_suspend_status
     chmod 0664 /sys/board_properties/tpd_suspend_status
@@ -76,4 +103,21 @@ on boot
     chown system drmrpc /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0070/secure_touch_enable
     chown system drmrpc /sys/devices/soc.0/78b9000.i2c/i2c-5/5-0070/secure_touch
 
+on post-fs-data
+# Allow usb charging to be disabled peristently
+on property:persist.usb.chgdisabled=1
+    write /sys/class/power_supply/battery/charging_enabled 0
 
+on property:persist.usb.chgdisabled=0
+    write /sys/class/power_supply/battery/charging_enabled 1
+
+on charger
+    wait /dev/block/bootdevice/by-name/system
+    mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
+    chown root system /sys/class/power_supply/bms/current_now
+    chown root system /sys/class/power_supply/bms/voltage_ocv
+    chmod 0664 /sys/class/power_supply/bms/current_now
+    chmod 0664 /sys/class/power_supply/bms/voltage_ocv
+    start vm_bms
+    load_all_props
+    start qcom-post-boot

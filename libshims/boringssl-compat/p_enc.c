@@ -1,24 +1,25 @@
+/* crypto/evp/p_enc.c */
 /* Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
  * All rights reserved.
  *
  * This package is an SSL implementation written
  * by Eric Young (eay@cryptsoft.com).
  * The implementation was written so as to conform with Netscapes SSL.
- *
+ * 
  * This library is free for commercial and non-commercial use as long as
  * the following conditions are aheared to.  The following conditions
  * apply to all code found in this distribution, be it the RC4, RSA,
  * lhash, DES, etc., code; not just the SSL code.  The SSL documentation
  * included with this distribution is covered by the same copyright terms
  * except that the holder is Tim Hudson (tjh@cryptsoft.com).
- *
+ * 
  * Copyright remains Eric Young's, and as such any Copyright notices in
  * the code are not to be removed.
  * If this package is used in a product, Eric Young should be given attribution
  * as the author of the parts of the library used.
  * This can be in the form of a textual message at program startup or
  * in documentation (online or textual) provided with the package.
- *
+ * 
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
@@ -33,10 +34,10 @@
  *     Eric Young (eay@cryptsoft.com)"
  *    The word 'cryptographic' can be left out if the rouines from the library
  *    being used are not cryptographic related :-).
- * 4. If you include any Windows specific code (or a derivative thereof) from
+ * 4. If you include any Windows specific code (or a derivative thereof) from 
  *    the apps directory (application code) you must include an acknowledgement:
  *    "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
- *
+ * 
  * THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
  * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
  * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -48,51 +49,39 @@
  * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
- *
+ * 
  * The licence and distribution terms for any publically available version or
  * derivative of this code cannot be changed.  i.e. this code cannot simply be
  * copied and put under another distribution licence
- * [including the GNU Public Licence.] */
+ * [including the GNU Public Licence.]
+ */
 
-#include <openssl/cipher.h>
-#include <openssl/des.h>
-#include <openssl/obj.h>
+#include <stdio.h>
+//#include "cryptlib.h"
+#include "evp.h"
+#include <openssl/rand.h>
+#ifndef OPENSSL_NO_RSA
+#include <openssl/rsa.h>
+#endif
+#include <openssl/evp.h>
+#include <openssl/objects.h>
+#include <openssl/x509.h>
 
-typedef struct {
-  union {
-    double align;
-    DES_key_schedule ks;
-  } ks;
-} EVP_DES_KEY;
-
-static int des_init_key(EVP_CIPHER_CTX *ctx, const uint8_t *key,
-                        const uint8_t *iv, int enc) {
-  DES_cblock *deskey = (DES_cblock *)key;
-  EVP_DES_KEY *dat = (EVP_DES_KEY *)ctx->cipher_data;
-
-  DES_set_key(deskey, &dat->ks.ks);
-  return 1;
-}
-
-static int des_ecb_cipher(EVP_CIPHER_CTX *ctx, uint8_t *out, const uint8_t *in,
-                          size_t in_len) {
-  if (in_len < ctx->cipher->block_size) {
-    return 1;
-  }
-  in_len -= ctx->cipher->block_size;
-
-  EVP_DES_KEY *dat = (EVP_DES_KEY *) ctx->cipher_data;
-  for (size_t i = 0; i <= in_len; i += ctx->cipher->block_size) {
-    DES_ecb_encrypt((DES_cblock *) (in + i), (DES_cblock *) (out + i),
-                    &dat->ks.ks, ctx->encrypt);
-  }
-  return 1;
-}
-
-static const EVP_CIPHER des_ecb = {
-    NID_des_ecb,         8 /* block_size */,  8 /* key_size */,
-    0 /* iv_len */,      sizeof(EVP_DES_KEY), EVP_CIPH_ECB_MODE,
-    NULL /* app_data */, des_init_key,        des_ecb_cipher,
-    NULL /* cleanup */,  NULL /* ctrl */, };
-
-const EVP_CIPHER *EVP_des_ecb(void) { return &des_ecb; }
+int EVP_PKEY_encrypt_old(unsigned char *ek, const unsigned char *key, int key_len,
+	     EVP_PKEY *pubk)
+	{
+	int ret=0;
+	
+#ifndef OPENSSL_NO_RSA
+	if (pubk->type != EVP_PKEY_RSA)
+		{
+#endif
+		EVPerr(EVP_F_EVP_PKEY_ENCRYPT_OLD,EVP_R_PUBLIC_KEY_NOT_RSA);
+#ifndef OPENSSL_NO_RSA
+		goto err;
+		}
+	ret=RSA_public_encrypt(key_len,key,ek,pubk->pkey.rsa,RSA_PKCS1_PADDING);
+err:
+#endif
+	return(ret);
+	}

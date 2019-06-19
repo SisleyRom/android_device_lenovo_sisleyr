@@ -7,6 +7,6 @@ allow mm-qcamerad system_data_file:dir { add_name remove_name write };
 allow mm-qcamerad system_data_file:dir w_dir_perms;
 allow mm-qcamerad system_data_file:file open;
 allow mm-qcamerad system_data_file:sock_file unlink;
-allow mm-qcamerad { untrusted_app_all priv_app }:fd use;
 allow mm-qcamerad vendor_file:file { execmod };
+allow mm-qcamerad { untrusted_app_all priv_app }:fd use;
 unix_socket_connect(mm-qcamerad, mpctl, perfd)
