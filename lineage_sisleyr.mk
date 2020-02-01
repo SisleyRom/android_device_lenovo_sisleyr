@@ -15,14 +15,14 @@
 
 $(call inherit-product, device/lenovo/sisleyr/full_sisleyr.mk)
 
-# Inherit some common rr stuff.
-$(call inherit-product, vendor/rr/config/common_full_phone.mk)
+# Inherit some common LineageOS stuff.
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Must define platform variant before including any common things
 TARGET_BOARD_PLATFORM_VARIANT := msm8916
 TARGET_BOOT_ANIMATION_RES := 720
 
-PRODUCT_NAME := rr_sisleyr
+PRODUCT_NAME := lineage_sisleyr
 BOARD_VENDOR := lenovo
 PRODUCT_DEVICE := sisleyr
 
@@ -37,6 +37,6 @@ TARGET_VENDOR_PRODUCT_NAME := sisleyr
 TARGET_VENDOR_DEVICE_NAME := sisleyr
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="sisleyr-user 5.0.2 LRX22G S60-a_S232_151021_ROW release-keys" \
+    PRIVATE_BUILD_DESC="sisleyr-user 5.0.2 LRX22G S90-a_S232_151021_ROW release-keys" \
 
 BUILD_FINGERPRINT := Lenovo/sisleyr/sisleyr:5.0.2/LRX22G/S90-a_S232_151021_ROW:user/release-keys
