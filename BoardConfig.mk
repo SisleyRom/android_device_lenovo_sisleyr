@@ -23,9 +23,6 @@ DEVICE_PATH := device/lenovo/sisleyr
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
-#cmhw
-BOARD_HARDWARE_CLASS += device/lenovo/sisleyr/lineagehw
-
 # Camera
 BOARD_CAMERA_SENSORS := ov13850_p13v01n imx179_p8n15e
 USE_DEVICE_SPECIFIC_CAMERA := true
@@ -53,7 +50,7 @@ BOARD_KERNEL_IMAGE_NAME := Image.gz
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
-TARGET_KERNEL_CONFIG := sisleylt-user_defconfig
+TARGET_KERNEL_CONFIG := lineageos_sisleyr_defconfig
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
