@@ -18,5 +18,5 @@
 
 ## Device Picture
 
-![Lenovo S60-a](https://www.ixbt.com/mobile/images/lenovo-s90/foto/lenovos90-128.jpg "Lenovo S90")
+![Lenovo S90-A](https://www.ixbt.com/mobile/images/lenovo-s90/foto/lenovos90-128.jpg "Lenovo S90")
 
