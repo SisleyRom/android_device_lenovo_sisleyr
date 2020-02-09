@@ -29,7 +29,7 @@ PRODUCT_DEVICE := sisleyr
 PRODUCT_GMS_CLIENTID_BASE := android-lenovo
 
 PRODUCT_MANUFACTURER := Lenovo
-PRODUCT_MODEL := Lenovo S90-a
+PRODUCT_MODEL := Lenovo S90-A
 
 PRODUCT_BRAND := Lenovo
 TARGET_VENDOR := lenovo
@@ -37,6 +37,6 @@ TARGET_VENDOR_PRODUCT_NAME := S90-A
 TARGET_VENDOR_DEVICE_NAME := sisleyr
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="sisleyr-user 5.0.2 LRX22G S90-a_S232_151021_ROW release-keys" \
+    PRIVATE_BUILD_DESC="sisleyr-user 5.0.2 LRX22G S90-A_S239_151126_ROW release-keys" \
 
-BUILD_FINGERPRINT := Lenovo/sisleyr/sisleyr:5.0.2/LRX22G/S90-a_S232_151021_ROW:user/release-keys
+BUILD_FINGERPRINT := Lenovo/sisleyr/sisleyr:5.0.2/LRX22G/S90-A_S239_151126_ROW:user/release-keys
