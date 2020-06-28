@@ -35,8 +35,7 @@ LOCAL_SRC_FILES += \
 
 LOCAL_CFLAGS += \
      -fno-short-enums \
-     -D_ANDROID_ \
-     -O3
+     -D_ANDROID_
 
 LOCAL_C_INCLUDES:= \
     $(TARGET_OUT_HEADERS)/gps.utils \
@@ -83,7 +82,6 @@ LOCAL_SRC_FILES += \
 LOCAL_CFLAGS += \
     -fno-short-enums \
     -D_ANDROID_ \
-    -O3
 
 ## Includes
 LOCAL_C_INCLUDES:= \
