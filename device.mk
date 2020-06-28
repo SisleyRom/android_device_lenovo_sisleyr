@@ -58,16 +58,12 @@ TARGET_SCREEN_WIDTH := 720
 
 # Camera
 PRODUCT_PACKAGES += \
-    android.hardware.camera.provider@2.4-impl \
     camera.msm8916 \
     libmm-qcamera \
-    libboringssl-compat \
-    libshim_atomic \
     Snap
 
-# Charger images
 PRODUCT_PACKAGES += \
-    charger_res_images
+    android.hardware.camera.provider@2.4-impl
 
 # GPS
 PRODUCT_PACKAGES += \
@@ -134,9 +130,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/sensors/_hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/_hals.conf
 
-# Thermals
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
+# System Properties
+$(call inherit-product, device/lenovo/sisleyr/system_prop.mk)
 
 # USB ID
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \

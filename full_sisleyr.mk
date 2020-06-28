@@ -25,6 +25,6 @@ $(call inherit-product, device/lenovo/sisleyr/device.mk)
 PRODUCT_DEVICE := sisleyr
 PRODUCT_NAME := full_sisleyr
 PRODUCT_BRAND := lenovo
-PRODUCT_MODEL := S90-A
+PRODUCT_MODEL := S90
 PRODUCT_MANUFACTURER := lenovo
 
