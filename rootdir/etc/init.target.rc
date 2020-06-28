@@ -26,16 +26,13 @@
 #
 
 on early-init
-    write /sys/class/leds/lcd-backlight/brightness 100
+    #set non-stand-charger can used
+    write /sys/module/phy_msm_usb/parameters/floated_charger_enable Y
 
 on boot
-    # Permissions for Factory Test of Charging Paths
-    chown system system /sys/class/power_supply/battery/capacity
-    chmod 0660 /sys/class/power_supply/battery/capacity
-    chown root /sys/class/power_supply/battery/current_now
-    chown root /sys/class/power_supply/battery/voltage_now
-    chmod 0664 /sys/class/power_supply/battery/current_now
-    chmod 0664 /sys/class/power_supply/battery/voltage_now
+    # charger
+    chown system system /sys/bus/i2c/drivers/lc709203/batt_capacity
+    chmod 0660 /sys/bus/i2c/drivers/lc709203/batt_capacity
     chown root system /sys/class/power_supply/bms/current_now
     chown root system /sys/class/power_supply/bms/voltage_ocv
     chmod 0664 /sys/class/power_supply/bms/current_now
@@ -78,53 +75,18 @@ on boot
     chown system system /sys/board_properties/lenovo_flag
     chmod 0664 /sys/board_properties/lenovo_flag
 
-on charger
-    wait /dev/block/bootdevice/by-name/system
-    mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
-
-    chown root /sys/class/power_supply/battery/current_now
-    chown root /sys/class/power_supply/battery/voltage_now
-    chmod 0664 /sys/class/power_supply/battery/current_now
-    chmod 0664 /sys/class/power_supply/battery/voltage_now
-    chown root system /sys/class/power_supply/bms/current_now
-    chown root system /sys/class/power_supply/bms/voltage_ocv
-    chmod 0664 /sys/class/power_supply/bms/current_now
-    chmod 0664 /sys/class/power_supply/bms/voltage_ocv
-    write /sys/module/lpm_levels/parameters/sleep_disabled 0
-    start vm_bms
-
+on post-fs-data
 service vm_bms /system/vendor/bin/vm_bms
-    class main
+    class core
     user root
     group root wakelock
 
-service charger /charger
-    class charger
-    critical
+on charger
+   wait /dev/block/bootdevice/by-name/system
+   mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
+   chown root system /sys/class/power_supply/bms/current_now
+   chown root system /sys/class/power_supply/bms/voltage_ocv
+   chmod 0664 /sys/class/power_supply/bms/current_now
+   chmod 0664 /sys/class/power_supply/bms/voltage_ocv
+   start vm_bms
 
-on fs
-    # VM tuning
-    write /proc/sys/vm/dirty_background_ratio 20
-    write /proc/sys/vm/dirty_expire_centisecs 200
-    write /proc/sys/vm/dirty_ratio 40
-    write /proc/sys/vm/page-cluster 0
-    write /proc/sys/vm/swappiness 0
-    write /proc/sys/vm/vfs_cache_pressure 80
-
-service imsqmidaemon /system/vendor/bin/imsqmidaemon
-    class main
-    user system
-    socket ims_qmid stream 0660 system radio
-    group radio net_raw log diag oem_2950
-    writepid /dev/cpuset/system-background/tasks
-
-service imsdatadaemon /system/vendor/bin/imsdatadaemon
-    class main
-    user system
-    socket ims_datad stream 0660 system radio
-    group system wifi radio inet net_raw log diag net_admin oem_2950
-    writepid /dev/cpuset/system-background/tasks
-    disabled
-
-on property:sys.ims.QMI_DAEMON_STATUS=1
-    start imsdatadaemon

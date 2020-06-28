@@ -30,19 +30,6 @@ ro.product.first_api_level=21
 # Latest hardware revision supported
 ro.product.model.platform=1
 
-# Fling velocities
-ro.min.fling_velocity=160
-ro.max.fling_velocity=20000
-
-# IMS
-persist.dbg.volte_avail_ovr=1
-persist.dbg.vt_avail_ovr=0
-persist.dbg.wfc_avail_ovr=0
-persist.ims.disableADBLogs=1
-persist.ims.disableDebugLogs=1
-persist.ims.disableIMSLogs=1
-persist.ims.disableQXDMLogs=1
-
 # NITZ
 persist.rild.nitz_plmn=
 persist.rild.nitz_long_ons_0=
@@ -53,12 +40,6 @@ persist.rild.nitz_short_ons_0=
 persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
-
-# Play store
-ro.com.google.clientidbase.am=android-lenovo
-ro.com.google.clientidbase.gmm=android-lenovo
-ro.com.google.clientidbase.ms=android-lenovo
-ro.com.google.clientidbase.yt=android-lenovo
 
 # Radio
 DEVICE_PROVISIONED=1

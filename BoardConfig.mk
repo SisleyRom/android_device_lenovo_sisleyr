@@ -20,9 +20,6 @@ include device/lenovo/msm8916-common/BoardConfigCommon.mk
 
 DEVICE_PATH := device/lenovo/sisleyr
 
-# Audio
-USE_XML_AUDIO_POLICY_CONF := 1
-
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
@@ -63,14 +60,6 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 
 # SELinux
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
-
-# Shims
-TARGET_LD_SHIM_LIBS += \
-    /system/vendor/lib64/lib-imsdpl.so|libboringssl-compat.so \
-    /system/vendor/lib64/lib-imsvt.so|libshim_ims.so
-
-# Snapdragon LLVM
-TARGET_USE_SDCLANG := true
 
 # TWRP
 ifeq ($(WITH_TWRP),true)
