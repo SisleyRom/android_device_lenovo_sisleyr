@@ -25,11 +25,9 @@ BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
 # Camera
 BOARD_CAMERA_SENSORS := ov13850_p13v01n imx179_p8n15e
+TARGET_PROVIDES_CAMERA_HAL := true
 TARGET_HAS_LEGACY_CAMERA_HAL1 := true
-TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
-    /system/vendor/lib/libmmcamera_faceproc.so=22 \
-    /system/vendor/lib/libarcsoft_flawless_face_hal.so=22 \
     /system/bin/cameraserver=22 \
     /system/bin/mediaserver=22 \
     /system/vendor/bin/mm-qcamera-daemon=22

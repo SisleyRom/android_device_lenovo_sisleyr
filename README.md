@@ -12,9 +12,9 @@
 | Storage                 | 32 GB                             |
 | Battery                 | 2300 mAh (removable)              |
 | Dimensions              | 72 x 143,3 x 7,7 mm               |
-| Display                 | 720 x 1280 pixels, 5.0" IPS LCD   |
+| Display                 | 720 x 1280 pixels, 5.0" Super AMOLED   |
 | Rear Camera             | 13 MP, LED flash                  |
-| Front Camera            | 5 MP                              |
+| Front Camera            | 8 MP, LED flash                    |
 
 ## Device Picture
 
