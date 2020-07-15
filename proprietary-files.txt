@@ -1,25 +1,29 @@
-# ADSP
-bin/adsprpcd:vendor/bin/adsprpcd
-vendor/lib64/libadsprpc.so
-vendor/lib/libadsprpc.so
-vendor/lib/libfastcvopt.so
+# ADSP - from Impress_Grip-user 7.1.2 HW1.R1.V09 22 release-keys
+bin/adsprpcd:vendor/bin/adsprpcd|554cf834efe6f1e80cb74ab8477e933e8b5f06c7
+vendor/lib64/libadsprpc.so|21f172e06950f5689f250a1895f9413f8626e8c7
+vendor/lib/libadsprpc.so|38d84b478f2fdc3fe87d9fb1ead1e58e8ee71fdf
+vendor/lib/libfastcvopt.so|9157c1960714430c8a987871533531ce255b92aa
 
-# Audio
-vendor/lib64/libacdb-fts.so
-vendor/lib64/libacdbloader.so
-vendor/lib64/libacdbrtac.so
-vendor/lib64/libadiertac.so
-vendor/lib64/libaudcal.so
-vendor/lib64/libFlacSwDec.so
-vendor/lib/libacdb-fts.so
-vendor/lib/libacdbloader.so
-vendor/lib/libacdbrtac.so
-vendor/lib/libadiertac.so
-vendor/lib/libaudcal.so
-vendor/lib/libFlacSwDec.so
-vendor/lib/soundfx/libqcbassboost.so
-vendor/lib/soundfx/libqcreverb.so
-vendor/lib/soundfx/libqcvirt.so
+# Audio - from Impress_Grip-user 7.1.2 HW1.R1.V09 22 release-keys
+vendor/lib/libFlacSwDec.so|86e6b7d392f11b75a45daebfd86be5dc515f1bca
+vendor/lib/libacdb-fts.so|bfe83872b0a6f42006f62eecff6259c74f222015
+vendor/lib/libacdbloader.so|dfbf397b3f79d33eb71657f1de3055c72e590797
+vendor/lib/libacdbmapper.so|9991c23b6edb58202b46fab9de538e078bc1e6c6
+vendor/lib/libacdbrtac.so|355303f03776857db6be57214d6aaaab79e25deb
+vendor/lib/libadiertac.so|7f2039dfb032d2101128347f8a017931b605d34d
+vendor/lib/libaudcal.so|9eebc55af50edbcc202c3a2f102d6f112032837e
+vendor/lib/libaudioalsa.so|d05c3f51c4ccb0415fd8cb4ad4737c0216148e54
+vendor/lib/soundfx/libqcbassboost.so|6b90e4149d2ad3ba8b2d24dd79649936daaf9818
+vendor/lib/soundfx/libqcreverb.so|b069b791baad66c21c2cd98ba3dac64756a69e73
+vendor/lib/soundfx/libqcvirt.so|166a0ff0dd075fe39411bbac8269d56ca943d31c
+vendor/lib64/libFlacSwDec.so|6f6bca83f21993ac0ab3e6f872cd362d92dbe8e3
+vendor/lib64/libacdb-fts.so|c309f2c0631f651b3b829b891c0c88b67a058c67
+vendor/lib64/libacdbloader.so|b9b0ba4942f0e135d9b8e88caa2ed98fcc31b646
+vendor/lib64/libacdbmapper.so|a32b3e70fe2416f3028e4b362033a2f4eabd3709
+vendor/lib64/libacdbrtac.so|0b092956287c5ec393cdf65445f43af309cff196
+vendor/lib64/libadiertac.so|775b8ea2bf235f9b8667fac06034cf7884bbad9e
+vendor/lib64/libaudcal.so|7bcc6590b0049ba2b7ff321c9a279459f1bf2d77
+vendor/lib64/libaudioalsa.so|02aa3b5819fcb1832c9c9175fb540442f285728a
 
 # Bluetooth
 bin/hci_qcomm_init:vendor/bin/hci_qcomm_init|feb560ac03f231f59dcf4c8b1ec4056f0171b85b
@@ -109,87 +113,111 @@ vendor/lib/libmmcamera_imx214_8916.so
 vendor/lib/libmmcamera_s5k3m2_olqba20.so
 vendor/lib/libmmcamera_s5k5e2_olq5f19.so
 
-# DRM
-bin/qseecomd:vendor/bin/qseecomd
-vendor/lib64/libdrmfs.so
-vendor/lib64/libdrmtime.so
-vendor/lib64/libQSEEComAPI.so
-vendor/lib64/librpmb.so
-vendor/lib64/libssd.so
+# DRM - from Impress_Grip-user 7.1.2 HW1.R1.V09 22 release-keys
+bin/qseecomd:vendor/bin/qseecomd|f3bcde8277d5ffc548110a5c8c335c82888a5275
+vendor/lib64/lib-sec-disp.so|271179fc78fcc5dcba925f1eda2bb67f466bbd36
+vendor/lib64/libQSEEComAPI.so|742d91346baddd6bd4e1bbccabd37d5ce7bd0432
+vendor/lib64/libSecureUILib.so|1591113d928ef2386a418f21fbdbcf15d86f088b
+vendor/lib64/libStDrvInt.so|e16a3f9d7b11eec2058043cd55aeaee83411a3a9
+vendor/lib64/libdrmfs.so|488196720b3d7e6ec0b96fae4fb603c1de1e13ce
+vendor/lib64/libdrmtime.so|d1312dd16399d8c646ec7276a6866b5951e7bd81
+vendor/lib64/librpmb.so|d5f26d4a345191734b1a650389d74112b59423ca
+vendor/lib64/libsecureui.so|abfb33200d28fc6ffcf5a4d4151ba614641911c9
+vendor/lib64/libsecureui_svcsock.so|efe37c238a0741818c1b356cfe6043a82e5b00d7
+vendor/lib64/libssd.so|db4c102676873d6c01ac5b98be7bb03066b06267
+vendor/lib64/libtzdrmgenprov.so|172765fc1178061f9bf753898b2e5d302f574443
+vendor/lib64/libtzplayready.so|9411a0addfe22584de76dd6867ac44098d384d82
 
-# GPS
--lib64/libloc_api_v02.so:vendor/lib64/libloc_api_v02.so
--lib64/libloc_ds_api.so:vendor/lib64/libloc_ds_api.so
-vendor/lib64/hw/flp.default.so
-vendor/lib64/libflp.so
-vendor/lib64/libgeofence.so
-vendor/lib64/libizat_core.so
-vendor/lib64/liblbs_core.so
+# GPS - from Impress_Grip-user 7.1.2 HW1.R1.V09 22 release-keys
+-lib64/libloc_api_v02.so:vendor/lib64/libloc_api_v02.so|ab80af0534c56629a31622b40857f7d1045f7271
+-lib64/libloc_ds_api.so:vendor/lib64/libloc_ds_api.so|8d2c3ea008b90f966e88dddd83a854d7aec347b7
+vendor/lib64/hw/flp.default.so|7aada061817501c55ed191a02b95751402250ea0
+vendor/lib64/libflp.so|310dde41e6b2d24ee4da46808eda79f18c1202f2
+vendor/lib64/libgeofence.so|f0220c7f211d83453c8ad52dcf8213ed876c63ce
+vendor/lib64/libizat_core.so|6a9f6780ba98452e82d64bb61d3ae17ad70125e4
+vendor/lib64/liblbs_core.so|4fbbcf59edf359f13b4a97d70d2ef41b572697f1
 
-# Graphics
-vendor/lib64/egl/eglsubAndroid.so
-vendor/lib64/egl/eglSubDriverAndroid.so
-vendor/lib64/egl/libEGL_adreno.so
-vendor/lib64/egl/libESXEGL_adreno.so
-vendor/lib64/egl/libESXGLESv1_CM_adreno.so
-vendor/lib64/egl/libESXGLESv2_adreno.so
-vendor/lib64/egl/libGLESv1_CM_adreno.so
-vendor/lib64/egl/libGLESv2_adreno.so
-vendor/lib64/egl/libq3dtools_adreno.so
-vendor/lib64/egl/libQTapGLES.so
-vendor/lib64/egl/libRBEGL_adreno.so
-vendor/lib64/egl/libRBGLESv1_CM_adreno.so
-vendor/lib64/egl/libRBGLESv2_adreno.so
-vendor/lib64/libadreno_utils.so
-vendor/lib64/libC2D2.so
-vendor/lib64/libc2d30-a3xx.so
-vendor/lib64/libc2d30-a4xx.so
-vendor/lib64/libCB.so
-vendor/lib64/libgsl.so
-vendor/lib64/libllvm-glnext.so
-vendor/lib64/libllvm-qcom.so
-vendor/lib64/libOpenCL.so
-vendor/lib64/librs_adreno.so
-vendor/lib64/librs_adreno_sha1.so
-vendor/lib64/libRSDriver_adreno.so
-vendor/lib64/libsc-a3xx.so
-vendor/lib64/libscale.so
-vendor/lib/egl/eglsubAndroid.so
-vendor/lib/egl/eglSubDriverAndroid.so
-vendor/lib/egl/libEGL_adreno.so
-vendor/lib/egl/libESXEGL_adreno.so
-vendor/lib/egl/libESXGLESv1_CM_adreno.so
-vendor/lib/egl/libESXGLESv2_adreno.so
-vendor/lib/egl/libGLESv1_CM_adreno.so
-vendor/lib/egl/libGLESv2_adreno.so
-vendor/lib/egl/libq3dtools_adreno.so
-vendor/lib/egl/libQTapGLES.so
-vendor/lib/egl/libRBEGL_adreno.so
-vendor/lib/egl/libRBGLESv1_CM_adreno.so
-vendor/lib/egl/libRBGLESv2_adreno.so
-vendor/lib/libadreno_utils.so
-vendor/lib/libC2D2.so
-vendor/lib/libc2d30-a3xx.so
-vendor/lib/libc2d30-a4xx.so
-vendor/lib/libCB.so
-vendor/lib/libgsl.so
-vendor/lib/libllvm-glnext.so
-vendor/lib/libllvm-qcom.so
-vendor/lib/libOpenCL.so
-vendor/lib/librs_adreno.so
-vendor/lib/librs_adreno_sha1.so
-vendor/lib/libRSDriver_adreno.so
-vendor/lib/libsc-a3xx.so
-vendor/lib/libscale.so
+# Graphics - from Impress_Grip-user 7.1.2 HW1.R1.V09 22 release-keys
+vendor/lib/egl/eglSubDriverAndroid.so|41b87be783f1b6ffd248dc2648ba402978be5d91
+vendor/lib/egl/eglsubAndroid.so|533e39af07cb781350acfe4c6a5e4a98e72d3142
+vendor/lib/egl/libEGL_adreno.so|cfd56d8550fa5558ab8e44a54537c940345580c3
+vendor/lib/egl/libESXEGL_adreno.so|facfab179b35fc01160da5b0cca1ca74c11a9c21
+vendor/lib/egl/libESXGLESv1_CM_adreno.so|db241d7f12c5a3bdc2d8c75add4ed740b8d1d335
+vendor/lib/egl/libESXGLESv2_adreno.so|12256d2c84999ae8b98f0d02534f92589ed6eada
+vendor/lib/egl/libGLESv1_CM_adreno.so|c3ee8a4861ac907eb892aba54c6672eb05500ed5
+vendor/lib/egl/libGLESv2_adreno.so|7cd477d4722920e2b4848aa4d5c54e0ad9ecc65a
+vendor/lib/egl/libQTapGLES.so|7596611d1ca94d9ac80f54b6956a3586bbbd2cf3
+vendor/lib/egl/libRBEGL_adreno.so|09d2b3d63b47297b1e980cc2de092016fd683f4e
+vendor/lib/egl/libRBGLESv1_CM_adreno.so|118087dfbada31e95c3d12f2903a9b06d06e60bf
+vendor/lib/egl/libRBGLESv2_adreno.so|8a1d0e253653dbfec0eba040c3df5d18207b6669
+vendor/lib/egl/libq3dtools_adreno.so|a38ac8d88dcd087b55137bf1549c95e31da695a3
+vendor/lib/libC2D2.so|d27280d62acaf8af19ece876241aa94213aa151b
+vendor/lib/libCB.so|18f4219261c58068f50194f92c6aacd9227dbffa
+vendor/lib/libOpenCL.so|e1f8c3fdb58fa9fbb1465d909e9ab7ba31176bd6
+vendor/lib/libRSDriver_adreno.so|0fd1a17c8500a8c193d3021a36a7fef29b7450a5
+vendor/lib/libadreno_utils.so|5e08564566cc29f6730a0ca3ecc950a4417d26f1
+vendor/lib/libbccQTI.so|6398482e0c14ad19fb3b993c25caf93a40788d9d
+vendor/lib/libc2d30-a3xx.so|371d6688b6140a2974da005a8f149a964884d0e3
+vendor/lib/libc2d30-a4xx.so|89a913924c5bdffea666a97fc9e867a48a92520a
+vendor/lib/libgsl.so|0dbd365347fb42deb3584cb5f311ac776d74d5f9
+vendor/lib/libllvm-glnext.so|e7a359bea9c404d4e1d052df85b45aa20485d65f
+vendor/lib/libllvm-qcom.so|6317d42a5da71c0132a9d2171837687e952aa4ad
+vendor/lib/librs_adreno.so|3687f82dd8cac1409a49574eaf894d955736db36
+vendor/lib/librs_adreno_sha1.so|018c7ca0f7c9fee7e8aef6bc70bd1ff8d1678cdb
+vendor/lib/libsc-a3xx.so|0ce1042501a97906fdcd1f6fdc22a7efd0e2232b
+vendor/lib/libscale.so|7938a028168c3dc5a84efa5c0e0b88d8f3c6292c
+vendor/lib64/egl/eglSubDriverAndroid.so|c62ab8faaa670a90a6a5736d8244566f68f809ba
+vendor/lib64/egl/eglsubAndroid.so|9547ccc0123eab77157d126b7795ed64aa1ad9e6
+vendor/lib64/egl/libEGL_adreno.so|15722ace1d1f2d798f22897c94b609c642758639
+vendor/lib64/egl/libESXEGL_adreno.so|d9020ed50646e37a7250ad1401ea1dc04cc4e031
+vendor/lib64/egl/libESXGLESv1_CM_adreno.so|32b4c14b75b628faab03ae387545b523d674d93b
+vendor/lib64/egl/libESXGLESv2_adreno.so|d0f6320f47f92f42ecb63e147610191afd76b1ec
+vendor/lib64/egl/libGLESv1_CM_adreno.so|db7b5cf0331cfc3e0ab9e684b1a89a8caca5338c
+vendor/lib64/egl/libGLESv2_adreno.so|2929606f334680dd7a458b4290478ac117cf851b
+vendor/lib64/egl/libQTapGLES.so|f8d105f02f747f436a9739eef06874704c1f5c5e
+vendor/lib64/egl/libRBEGL_adreno.so|9f8cd2462c4f3f181fe7a310f2320c54d5026414
+vendor/lib64/egl/libRBGLESv1_CM_adreno.so|b0a362da27e273e5e06ff24785e02c85618e69e0
+vendor/lib64/egl/libRBGLESv2_adreno.so|fa70976b1d7d9d6b5ab549d059d14d3920b3cdb4
+vendor/lib64/egl/libq3dtools_adreno.so|4f40044e8afdbc1ee51ff2a2b4ac385b783cf2cd
+vendor/lib64/libC2D2.so|78a3135862cf7202984a42440f8c3acdbe34228d
+vendor/lib64/libCB.so|21070b19bd2b14d1b7b83a17f19bcd7dfcc9772a
+vendor/lib64/libOpenCL.so|6e37048cd58e7e3699e9373ac2e39122acdd3090
+vendor/lib64/libRSDriver_adreno.so|842c50702b63cc2a40ececb3598f996c4b4ceda9
+vendor/lib64/libadreno_utils.so|584a7227987276a84d21b317bce70420346cdddb
+vendor/lib64/libbccQTI.so|2919a0e047e2ffa9785edc9b79aab0078eaf1ceb
+vendor/lib64/libc2d30-a3xx.so|cb6a77480a3ee1201aa7a2b2e99b1f63d9e8507e
+vendor/lib64/libc2d30-a4xx.so|a9434e34172664f1b3665a1392a75cf243dc9343
+vendor/lib64/libgsl.so|caa49d2fb5d0dc956437dbf597ea71330cfbb358
+vendor/lib64/libllvm-glnext.so|96e52855eab04da6d5c7f803ab412eacd779151e
+vendor/lib64/libllvm-qcom.so|f109bfebd1c0bb92fcd9c6f5925a1e8765fd5cef
+vendor/lib64/librs_adreno.so|7f1bf04aee4fb7334acb40f2ae1d18ae18dc1a15
+vendor/lib64/librs_adreno_sha1.so|9d852d0dc0fd8855f6072246a330666e22716cae
+vendor/lib64/libsc-a3xx.so|0c8d131b930af390e8434f2ed24033c4276c2773
+vendor/lib64/libscale.so|279e757d6212b79ff70710b6ce94cd89db455943
 
 # Graphics firmware
 etc/firmware/a300_pfp.fw:vendor/firmware/a300_pfp.fw
 etc/firmware/a300_pm4.fw:vendor/firmware/a300_pm4.fw
 
-# Media
-vendor/lib/libOmxAacDec.so
-vendor/lib/libOmxEvrcDec.so
-vendor/lib/libOmxQcelp13Dec.so
+# Media - from Impress_Grip-user 7.1.2 HW1.R1.V09 22 release-keys
+vendor/lib/libFileMux.so|3b50e97bf4b2f1759f52e3b02f4c7ca8ecc7169f
+vendor/lib/libOmxAacDec.so|d0d61fb2105a978da8009c09ee1217f4a8d430a1
+vendor/lib/libOmxEvrcDec.so|f9e1d26c46abe3e2b613df1ce01a70f9563f608e
+vendor/lib/libOmxMux.so|25cec72d18dd7e1a72ec60e8c66e2ea52314bf38
+vendor/lib/libOmxQcelp13Dec.so|daecca80895db152acf7bd94af361303b1548f1a
+vendor/lib/libmmosal.so|4345d3e070fe8bb24c28f489697693b26749f6a2
+vendor/lib/libmmparser.so|ff3cfea0c63a7052a273c594f4095f15902052df
+vendor/lib/libmmparser_lite.so|0ce0f3e149bd90b6b0aae0653e82f54a2b57db85
+vendor/lib/libmmrtpdecoder.so|0da3780983bc709b525635f021618d648a7dc8b1
+vendor/lib/libmmrtpencoder.so|3baa6cfe729887d518f5ed93f5c66c900c066d31
+vendor/lib64/libFileMux.so|ccec10debcc0693dbadb4b4f2469173a71adf0fb
+vendor/lib64/libOmxAacDec.so|d49d9a0860a9f555d10c6cd26e8c24bce0c66ce6
+vendor/lib64/libOmxMux.so|5199da33a11db4a1b01e4f62dabe4f61af34e62e
+vendor/lib64/libmmosal.so|27968c165497861e630377a8799afca898bc7934
+vendor/lib64/libmmparser.so|e7a6c9dbce99a0053a268238f75a54494e9a42a0
+vendor/lib64/libmmparser_lite.so|d617ef554feff29e5f8b8c693b06d4c85a984b2f
+vendor/lib64/libmmrtpdecoder.so|a001e967f80d575a06e9c3347e8141fd3d514c76
+vendor/lib64/libmmrtpencoder.so|3319425c10c1eba217489d03ae4ccdd584699820
 
 # Perf
 vendor/bin/perfd|622b2e94eaad0fc245e0075318480c3d16cbd091
