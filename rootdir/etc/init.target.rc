@@ -75,6 +75,9 @@ on boot
     chown system system /sys/board_properties/lenovo_flag
     chmod 0664 /sys/board_properties/lenovo_flag
 
+    # GnssConfiguration doesn't actually look at gps.conf, just the debug file
+    mount none /system/etc/gps.conf /system/etc/gps_debug.conf bind
+
 on post-fs-data
 service vm_bms /system/vendor/bin/vm_bms
     class core

@@ -20,6 +20,9 @@ include device/lenovo/msm8916-common/BoardConfigCommon.mk
 
 DEVICE_PATH := device/lenovo/sisleyr
 
+# Bionic
+MALLOC_SVELTE := true
+
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
@@ -50,7 +53,7 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 26843545600
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # GPS
-USE_DEVICE_SPECIFIC_GPS := true
+TARGET_NO_RPC := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm8916
@@ -69,7 +72,7 @@ TARGET_KERNEL_CONFIG := lineageos_sisleyr_defconfig
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 
 # Security patch level
-VENDOR_SECURITY_PATCH := 2015-12-01
+VENDOR_SECURITY_PATCH := 2016-12-01
 
 # SELinux
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy

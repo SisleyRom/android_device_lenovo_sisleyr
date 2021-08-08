@@ -85,14 +85,11 @@ PRODUCT_PACKAGES += \
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/keylayout/gpio-keys.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/gpio-keys.kl \
-    $(LOCAL_PATH)/keylayout/ft5x06_ts.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/ft5x06_ts.kl \
     $(LOCAL_PATH)/keylayout/qpnp_pon.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/qpnp_pon.kl
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-impl \
-    android.hardware.light@2.0-service \
-    lights.msm8916
+    android.hardware.light@2.0-service.aw2013
 
 # Media
 PRODUCT_COPY_FILES += \
@@ -118,6 +115,10 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/data/qmi_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/qmi_config.xml \
     $(LOCAL_PATH)/configs/data/dsi_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/data/dsi_config.xml
 
+# Screenrecorder
+PRODUCT_PACKAGES += \
+    Recorder
+
 # Sensors
 PRODUCT_PACKAGES += \
     calmodule.cfg \
@@ -133,10 +134,6 @@ PRODUCT_COPY_FILES += \
 
 # System Properties
 $(call inherit-product, device/lenovo/sisleyr/system_prop.mk)
-
-# Thermal
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_SYSTEM)/etc/thermal-engine.conf
 
 # USB ID
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
