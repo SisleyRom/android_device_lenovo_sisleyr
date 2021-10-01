@@ -1,2 +1,0 @@
-/data/misc/sensor(/.*)?                                    u:object_r:sensors_data_file:s0
-

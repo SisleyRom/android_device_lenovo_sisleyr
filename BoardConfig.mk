@@ -20,27 +20,11 @@ include device/lenovo/msm8916-common/BoardConfigCommon.mk
 
 DEVICE_PATH := device/lenovo/sisleyr
 
-# Bionic
-MALLOC_SVELTE := true
-
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(DEVICE_PATH)/bluetooth
 
 # Camera
 BOARD_CAMERA_SENSORS := ov13850_p13v01n imx179_p8n15e
-TARGET_HAS_LEGACY_CAMERA_HAL1 := true
-TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
-    /system/bin/cameraserver=22 \
-    /system/bin/mediaserver=22 \
-    /system/vendor/bin/mm-qcamera-daemon=22
-
-# Dexpreopt
-ifeq ($(HOST_OS),linux)
-  ifneq ($(TARGET_BUILD_VARIANT),eng)
-    WITH_DEXPREOPT ?= true
-  endif
-endif
-WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY ?= true
 
 # Filesystem
 BOARD_FLASH_BLOCK_SIZE := 131072
@@ -50,10 +34,6 @@ BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 20971520
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2147483648
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 26843545600
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-
-# GPS
-TARGET_NO_RPC := true
 
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm8916
@@ -73,14 +53,6 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 
 # Security patch level
 VENDOR_SECURITY_PATCH := 2016-12-01
-
-# SELinux
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
-
-# TWRP
-ifeq ($(WITH_TWRP),true)
-include $(DEVICE_PATH)/twrp.mk
-endif
 
 # Inherit from proprietary files
 -include vendor/lenovo/sisleyr/BoardConfigVendor.mk
